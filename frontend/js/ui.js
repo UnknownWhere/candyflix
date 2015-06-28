@@ -637,7 +637,7 @@ var ui = {
 
     },
     hide:function(){
-      $('.cover').attr("ontransitionEnd","this.parentNode.removeChild(this);").css({opacity:0});
+      $('.cover').remove();
     }
   },
 
