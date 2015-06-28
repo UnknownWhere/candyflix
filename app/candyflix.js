@@ -2,6 +2,15 @@ var io = require('socket.io')();
 var spawn = require('child_process').spawn;
 var getport = require('getport');
 var request = require("request");
+var winston = require("winston");
+// initiate Logger 
+var logger = new winston.Logger({
+  transports: [
+    new (winston.transports.Console) (),
+    new (winston.transports.File) ({filename: '/var/log/streaming.log'})
+    ]
+  }
+  );
 
 var subtitles = require('./subtitles.js');
 
@@ -38,12 +47,14 @@ io.on('connection', function(socket){
 
         }else{
           console.log('Failed to download subtitle!', error, response);
+          logger.log('error','Failed to download subtitle!', error, response);
         }
       });
     }
 
     if(msg['url_request']) {
       var url = msg['url_request'];
+      logger.log('info',"URL Request" + url);
       request(url, function(error, response, body) {
         socket.emit('url_request', body);
       });
@@ -59,6 +70,7 @@ io.on('connection', function(socket){
 
           var child = spawn('peerflix', [msg.torrent.stream[0], '--port='+ port, '--tmp=./tmp', '--remove'], {});
 
+
           process.port = port;
           process.spectators = 0;
           process.child = child;
@@ -66,12 +78,14 @@ io.on('connection', function(socket){
           processes[msg.torrent.stream[1]] = process;
 
           child.stdout.on('data', function(data) {
+            logger.log('info','Peerflix Data' +data);
             //console.log('stdout: ' + data);
           });
           child.stderr.on('data', function(data) {
             console.log('stderr: ' + data);
           });
           child.on('close', function (code, signal) {
+            logger.log('error','child process terminated due to receipt of signal '+signal);
             console.log('child process terminated due to receipt of signal '+signal);
           });
         }
@@ -90,12 +104,15 @@ io.on('connection', function(socket){
         socket.playing = msg.torrent.stream[1];
 
         console.log("------------------RUNNING PROCESSES------------------");
+        logger.log('info',"------------------RUNNING PROCESSES------------------");
         for(var p in processes) {
           console.log(p + " | Port:" + processes[p].port + " | Spectators: " + processes[p].spectators);
+          logger.log('info',p + " | Port:" + processes[p].port + " | Spectators: " + processes[p].spectators);
         }
         console.log("-----------------------------------------------------");
-
+        logger.log('info',"-----------------------------------------------------");
         socket.emit('streamUrl', port);
+        logger.log('info','streamUrl :  '+ port);
       });
     }
   });

@@ -1,10 +1,11 @@
 {
   "name": "candyflix",
-  "version": "0.0.0",
-  "description": "",
+  "version": "1.0.0",
+  "description": "Streaming Website like Popcorn Time",
   "main": "candyflix.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+    "start"  : "node candyflix.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
     "iconv-lite": "^0.4.4",
     "jschardet": "^1.1.0",
     "request": "^2.44.0",
+    "winston":"^1.0.1",
     "socket.io": "^1.1.0"
   }
 }
