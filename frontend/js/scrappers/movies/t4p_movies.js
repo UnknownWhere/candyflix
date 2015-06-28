@@ -4,7 +4,7 @@ fetcher.scrappers.t4p_movies = function(genre, keywords, page, callback){
 			genre = !1;
 
 
-		var url = 'http://api.stream.nontonfilm21.com/list?sort=seeds&format=mp4&cb='+Math.random()+'&quality=720p,1080p,3d&page=' + ui.home.catalog.page;
+		var url = 'http://api.torrentsapi.com/list?sort=seeds&format=mp4&cb='+Math.random()+'&quality=720p,1080p,3d&page=' + ui.home.catalog.page;
 
         if (keywords) {
             url += '&keywords=' + keywords;

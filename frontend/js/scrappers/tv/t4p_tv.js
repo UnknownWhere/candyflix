@@ -6,7 +6,7 @@ fetcher.scrappers.t4p_tv = function(genre, keywords, page, callback){
 			genre = !1;
 
 
-		var url = 'http://api.stream.nontonfilm21.com/shows?formats=mp4&cb='+Math.random()+'&sort=seeds&page=' + ui.home.catalog.page;
+		var url = 'http://api.torrentsapi.com/shows?formats=mp4&cb='+Math.random()+'&sort=seeds&page=' + ui.home.catalog.page;
 
         if (keywords) {
             url += '&keywords=' + keywords;
