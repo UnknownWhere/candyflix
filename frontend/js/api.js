@@ -46,7 +46,7 @@ var api = {
 			})
 		}
 
-		api.now_playing = url;
+		api.now_playing = url.replace('stream','watch.stream');
 
 		$('.cover').html('<video id="video_player" class="video-js vjs-default-skin vjs-big-play-centered" width="100%" height="100%"><source src="' + api.now_playing + '" type="video/mp4" />'+subtitles+'</video>');
 
