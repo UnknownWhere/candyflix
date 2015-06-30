@@ -1,11 +1,11 @@
 fetcher.scrappers.t4p_movies = function(genre, keywords, page, callback){
 
-		if(genre=='all')
-			genre = !1;
+		// if(genre=='all')
+		// 	genre = !1;
 
 
-		var url = 'http://api.torrentsapi.com/list?sort=seeds&format=mp4&cb='+Math.random()+'&quality=720p,1080p,3d&page=' + ui.home.catalog.page;
-
+		//var url = 'http://api.torrentsapi.com/list?sort=seeds&format=mp4&cb='+Math.random()+'&quality=720p,1080p,3d&page=' + ui.home.catalog.page;
+		var url = 'http://eqwww.image.yt/api/v2/list_movies.json?sort_by=seeds&limit=50&with_rt_ratings=true'
         if (keywords) {
             url += '&keywords=' + keywords;
         }
@@ -15,7 +15,7 @@ fetcher.scrappers.t4p_movies = function(genre, keywords, page, callback){
         }
 
         if (page && page.toString().match(/\d+/)) {
-           url += '&set=' + page;
+           url += '&page=' + page;
         }
 
 		$.ajax({
@@ -27,53 +27,53 @@ fetcher.scrappers.t4p_movies = function(genre, keywords, page, callback){
 				var movies = [],
 					memory = {};
 
-				if (data.error || typeof data.MovieList === 'undefined') {
+				if (data.error || typeof data.data.movies === 'undefined') {
 					callback(false)
 					return;
 				}
-
-				data.MovieList.forEach(function (movie){
+				data.data.movies.forEach(function (movie){
 					// No imdb, no movie.
-					if( typeof movie.imdb != 'string' || movie.imdb.replace('tt', '') == '' ){ return;}
+					if( typeof movie.imdb_code != 'string' || movie.imdb_code.replace('tt', '') == '' ){ return;}
 
-			try{
+					try{
 					var torrents = {};
-
+					
 					// Keep only yify releases
-					for(var i=movie.items.length-1; i>=0; i--) {
-						var torrent = movie.items[i];
-						var file = torrent.file;
-						if(file.toLowerCase().indexOf('yify') === -1 || file.indexOf('1080p.3D') !== -1) {
-							movie.items.splice(i, 1);
-						}
-					}
+					// for(var i=movie.torrents.length-1; i>=0; i--) {
+					// 	var torrent = movie.torrents[i];
+					// 	var file = torrent.file;
+					// 	if(file.toLowerCase().indexOf('yify') === -1 || file.indexOf('1080p.3D') !== -1) {
+					// 		movie.torrents.splice(i, 1);
+					// 	}
+					// }
 
-					movie.items.forEach(function(torrent){
+					movie.torrents.forEach(function(torrent){
 						if(torrent.type===0 && !torrents[torrent.quality]){
-							torrents[torrent.quality] = torrent.torrent_url
+							torrents[torrent.quality] = torrent.url
 						}
 					});
 
 					// Temporary object
 					var movieModel = {
-						imdb:       movie.imdb,
-						title:      movie.title,
+						imdb:       movie.imdb_code,
+						title:      movie.title_long,
 						year:       movie.year ? movie.year : '&nbsp;',
 						runtime:    movie.runtime,
 						synopsis:   "",
 						voteAverage:parseFloat(movie.rating),
 
-						image:      movie.poster_med,
-						bigImage:   movie.poster_big,
-						backdrop:   "",
+						image:      movie.medium_cover_image,
+						bigImage:   movie.medium_cover_image,
+						backdrop:   movie.background_image,
 
-						quality:    movie.items[0].quality,
-						torrent:    movie.items[0].torrent_url,
-						torrents:   movie.items,
+						quality:    movie.torrents[0].quality,
+						torrent:    movie.torrents[0].url,
+						torrents:   movie.torrents,
 						videos:     {},
-						seeders:    movie.torrent_seeds,
-						leechers:   movie.torrent_peers,
-						trailer:	movie.trailer ? 'http://www.youtube.com/embed/' + movie.trailer + '?autoplay=1': false,
+						seeders:    movie.torrents[0].seeds,
+						leechers:   movie.torrents[0].peers,
+						trailer:"",
+						//trailer:	movie.trailer ? 'http://www.youtube.com/embed/' + movie.trailer + '?autoplay=1': false,
 						stars:		utils.movie.rateToStars(parseFloat(movie.rating)),
 
 						hasMetadata:false,
@@ -82,11 +82,11 @@ fetcher.scrappers.t4p_movies = function(genre, keywords, page, callback){
 
 
 
-					var stored = memory[movie.imdb];
+					var stored = memory[movie.imdb_code];
 
 					// Create it on memory map if it doesn't exist.
 					if (typeof stored === 'undefined') {
-						stored = memory[movie.imdb] = movieModel;
+						stored = memory[movie.imdb_code] = movieModel;
 					}
 
 					if (stored.quality !== movieModel.quality && movieModel.quality === '720p') {
@@ -95,16 +95,18 @@ fetcher.scrappers.t4p_movies = function(genre, keywords, page, callback){
 					}
 
 					// Set it's correspondent quality torrent URL.
-					stored.torrents[movie.Quality] = movie.TorrentUrl;
-
+					stored.torrents[movie.quality] = movie.torrents;
+					console.log(stored);
 					// Push it if not currently on array.
 					if (movies.indexOf(stored) === -1) {
 						movies.push(stored);
 					}
-			}catch(e){}
-
+					
+			}catch(e){
+				console.log(e);
+			}
 				});
-
+				
 				callback(movies)
 			},
 		});

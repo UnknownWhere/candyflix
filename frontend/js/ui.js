@@ -274,8 +274,8 @@ var ui = {
             for(var i=0;i<movie.torrents.length;i++){
               var option = utils.tokenizer({
                 quality:  movie.torrents[i].quality,
-                peers:    movie.torrents[i].torrent_seeds + ' Seeds, &nbsp;' + movie.torrents[i].torrent_peers + ' Peers',
-                health:    utils.calculateTorrentHealth(movie.torrents[i].torrent_seeds, movie.torrents[i].torrent_peers)
+                peers:    movie.torrents[i].seeds + ' Seeds, &nbsp;' + movie.torrents[i].peers + ' Peers',
+                health:    utils.calculateTorrentHealth(movie.torrents[i].seeds, movie.torrents[i].peers)
 
               }, html);
               $(option).appendTo(slider_selector + ' .torrents').click(function(){
@@ -300,7 +300,7 @@ var ui = {
 
             var idx = el.index();
 
-            if(!movie.torrents[idx] || !movie.torrents[idx].torrent_url){
+            if(!movie.torrents[idx] || !movie.torrents[idx].url){
 
               utils.msgbox('Error - please choose a diffrent torrent');
               el.remove();
@@ -312,7 +312,7 @@ var ui = {
 
 
             var
-            torrent   = movie.torrents[idx].torrent_url,
+            torrent   = movie.torrents[idx].url,
             video_file   = movie.torrents[idx].file;
 
             api.send({torrent:{stream:[torrent, video_file]}});
