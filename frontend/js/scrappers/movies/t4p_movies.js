@@ -3,7 +3,7 @@ fetcher.scrappers.t4p_movies = function(genre, keywords, page, callback){
 		// if(genre=='all')
 		// 	genre = !1;
 
-
+		var page = ui.home.catalog.page;
 		//var url = 'http://api.torrentsapi.com/list?sort=seeds&format=mp4&cb='+Math.random()+'&quality=720p,1080p,3d&page=' + ui.home.catalog.page;
 		var url = 'http://eqwww.image.yt/api/v2/list_movies.json?sort_by=seeds&limit=50&with_rt_ratings=true'
         if (keywords) {
