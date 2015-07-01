@@ -73,7 +73,7 @@ io.on('connection', function(socket){
         logger.log('info',"------------------Message Torrent : " + JSON.stringify(msg['torrent']) + "------------------");
         logger.log('info',"------------------OPEN PORT ON : " + port + "------------------");
 
-        if(!processes[msg.torrent.stream[1]]) {
+        if(!processes[msg.torrent.stream[0]]) {
           var process = {};
 
           var child = spawn('peerflix', [msg.torrent.stream[0], '--port='+ port, '--tmp=./tmp', '--remove'], {});
@@ -83,7 +83,7 @@ io.on('connection', function(socket){
           process.spectators = 0;
           process.child = child;
 
-          processes[msg.torrent.stream[1]] = process;
+          processes[msg.torrent.stream[0]] = process;
 
           child.stdout.on('data', function(data) {
             logger.log('info','Peerflix Data' +data);
@@ -97,9 +97,9 @@ io.on('connection', function(socket){
             console.log('child process terminated due to receipt of signal '+signal);
           });
         }
-        else port = processes[msg.torrent.stream[1]].port;
+        else port = processes[msg.torrent.stream[0]].port;
 
-        processes[msg.torrent.stream[1]].spectators++;
+        processes[msg.torrent.stream[0]].spectators++;
 
         if(socket.playing) { // There was already a stream running
           processes[socket.playing].spectators--;
@@ -109,7 +109,7 @@ io.on('connection', function(socket){
           }
         }
 
-        socket.playing = msg.torrent.stream[1];
+        socket.playing = msg.torrent.stream[0];
 
         console.log("------------------RUNNING PROCESSES------------------");
         logger.log('info',"------------------RUNNING PROCESSES------------------");
