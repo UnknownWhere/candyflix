@@ -62,7 +62,7 @@ io.on('connection', function(socket){
 
     if(msg['torrent'] && !msg['torrent'].stream_stop) {
 
-      getport(function (err, port) {
+      getport(5000,7000,function (err, port) {
         if (err)
         { 
           logger.log('error',err);
