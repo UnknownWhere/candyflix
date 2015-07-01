@@ -63,7 +63,15 @@ io.on('connection', function(socket){
     if(msg['torrent'] && !msg['torrent'].stream_stop) {
 
       getport(function (err, port) {
-        if (err) console.log(err);
+        if (err)
+        { 
+          logger.log('error',err);
+          console.log(err);
+        }
+
+        console.log(msg['torrent']);
+
+        logger.log('info',"------------------OPEN PORT ON : " + port + "------------------");
 
         if(!processes[msg.torrent.stream[1]]) {
           var process = {};
