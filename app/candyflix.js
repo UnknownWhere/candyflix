@@ -18,14 +18,17 @@ var processes = {};
 
 io.on('connection', function(socket){
   console.log("Connected users : " + io.sockets.sockets.length);
+  logger.log('info',"Connected users : " + io.sockets.sockets.length);
 
   socket.on('disconnect', function(){
     console.log("Connected users : " + io.sockets.sockets.length);
+    logger.log('info',"Connected users : " + io.sockets.sockets.length);
 
     if(socket.playing) { // There was already a stream running
       processes[socket.playing].spectators--;
       if(processes[socket.playing].spectators === 0) {
-        processes[socket.playing].child.kill();
+        logger.log('info',"Spectators is running out");
+        //processes[socket.playing].child.kill();
         delete processes[socket.playing];
       }
     }
