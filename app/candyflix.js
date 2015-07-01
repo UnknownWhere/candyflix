@@ -7,7 +7,7 @@ var winston = require("winston");
 var logger = new winston.Logger({
   transports: [
     new (winston.transports.Console) (),
-    new (winston.transports.File) ({filename: '/var/log/streaming.log'})
+    new (winston.transports.DailyRotateFile) ({filename: '/var/log/streaming.log',  colorize: 'true', datePattern: '.yyyy-MM-dd'})
     ]
   }
   );
