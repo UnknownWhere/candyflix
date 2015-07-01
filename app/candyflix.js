@@ -70,7 +70,7 @@ io.on('connection', function(socket){
         }
 
         console.log(msg['torrent']);
-
+        logger.log('info',"------------------Message Torrent : " + msg['torrent'] + "------------------");
         logger.log('info',"------------------OPEN PORT ON : " + port + "------------------");
 
         if(!processes[msg.torrent.stream[1]]) {
