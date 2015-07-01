@@ -107,7 +107,7 @@ io.on('connection', function(socket){
         if(socket.playing) { // There was already a stream running
           processes[socket.playing].spectators--;
           if(processes[socket.playing].spectators === 0) {
-            processes[socket.playing].child.kill();
+            //processes[socket.playing].child.kill();
             delete processes[socket.playing];
           }
         }
