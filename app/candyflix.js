@@ -28,7 +28,7 @@ io.on('connection', function(socket){
       processes[socket.playing].spectators--;
       if(processes[socket.playing].spectators === 0) {
         logger.log('info',"Spectators is running out");
-        //processes[socket.playing].child.kill();
+        processes[socket.playing].child.kill();
         delete processes[socket.playing];
       }
     }
@@ -107,7 +107,8 @@ io.on('connection', function(socket){
         if(socket.playing) { // There was already a stream running
           processes[socket.playing].spectators--;
           if(processes[socket.playing].spectators === 0) {
-            //processes[socket.playing].child.kill();
+            logger.log('info',"Spectators is running out on getport");
+            processes[socket.playing].child.kill();
             delete processes[socket.playing];
           }
         }
