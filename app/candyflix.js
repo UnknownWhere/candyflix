@@ -1,6 +1,6 @@
 var io = require('socket.io')();
 var spawn = require('child_process').spawn;
-var getport = require('getport');
+var getport = require('get-port');
 var request = require("request");
 var winston = require("winston");
 // initiate Logger 
@@ -62,7 +62,7 @@ io.on('connection', function(socket){
 
     if(msg['torrent'] && !msg['torrent'].stream_stop) {
 
-      getport(5000,7000,function (err, port) {
+      getPort(function (err, port) {
         if (err)
         { 
           logger.log('error',err);

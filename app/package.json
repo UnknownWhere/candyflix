@@ -24,6 +24,7 @@
     "jschardet": "^1.1.0",
     "request": "^2.44.0",
     "winston":"^1.0.1",
-    "socket.io": "^1.1.0"
+    "socket.io": "^1.1.0",
+    "get-port" : "^1.0.0"
   }
 }
