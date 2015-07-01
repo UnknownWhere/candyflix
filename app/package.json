@@ -1,7 +1,7 @@
 {
-  "name": "candyflix",
+  "name": "NontonFilm",
   "version": "1.0.0",
-  "description": "Streaming Website like Popcorn Time",
+  "description": "Popcorn Time on Browser based on candyflix",
   "main": "candyflix.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,6 +12,9 @@
     "url": "https://github.com/G-Ray/candyflix.git"
   },
   "author": "Geoffrey Bonneville",
+  "contributors": [{
+    "name": "Billy Riantono"
+  }],
   "license": "GPLv3",
   "bugs": {
     "url": "https://github.com/G-Ray/candyflix/issues"
