@@ -56,7 +56,7 @@ var fetcher = {
 
 			$.get('http://api.stream.nontonfilm21.com/show/'+imdb+'?cb='+Math.random()+'&formats=mp4&imdb=' + imdb, function(json){
 				if(json){
-
+					console.log(json);
 					try{
 
 						for(var s in json) {
