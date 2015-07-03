@@ -73,12 +73,11 @@ var fetcher = {
 						// 	return a - b;
 						// });
 						for(var j=0;j<json.seasons.length;j++){
-							json.episodesList[json.seasons[j]] = {};
+							json.episodesList[json.seasons[j]] = [];
 							for(var i=0;i<json.episodes.length; i++){
 								
 								if(json.episodes[i].season==json.seasons[j]){
-									json.episodesList[json.seasons[j]][json.episodes[i].episode] = {};
-									json.episodesList[json.seasons[j]][json.episodes[i].episode] = json.episodes[i];
+									json.episodesList[json.seasons[j]].push(json.episodes[i]);
 									//console.log("Season : " + json.seasons[j] + " / " + JSON.stringify(json.episodes[i]));
 									//index++;
 								}
