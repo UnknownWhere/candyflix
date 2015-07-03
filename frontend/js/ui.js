@@ -433,7 +433,7 @@ var ui = {
               seasons_cont   = $('#slider_' + imdb + ' .choose_season select');
 
               for(var i in items.seasons){
-                seasons_cont.append('<option value="'+i+'">' + locale.translate('season') + ' ' + i + '</div>');
+                seasons_cont.append('<option value="'+i+'">' + locale.translate('season') + ' ' + items.seasons[i] + '</div>');
 
                 if(!seasons_counter){
                   var season_id = items.seasons[i].toString();
@@ -487,7 +487,7 @@ var ui = {
           $('#slider_' + imdb + ' .watch_btn').css('visibility','visible');
           $('#slider_' + imdb + ' .torrents').html('')
 
-          if(episode.items && episode.torrents.length){
+          if(episode.torrents && episode.torrents.length){
             $('#slider_' + imdb + ' .watch_btn').css('visibility','visible');
 
             var html = $('#torrent_option_html').html();
