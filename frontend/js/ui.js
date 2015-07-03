@@ -492,9 +492,8 @@ var ui = {
           console.log('bagus');
             var html = $('#torrent_option_html').html();
             for(var item in episode.torrents){
-              console.log(episode.torrents[item]);
               var option = utils.tokenizer({
-                quality:  episode.torrents[item],
+                quality:  item,
                 peers:    episode.torrents[item].seeds + ' Seeds, &nbsp;' + episode.torrents[item].peers + ' Peers',
                 health:    utils.calculateTorrentHealth(episode.torrents[item].seeds, episode.torrents[item].peers)
 
