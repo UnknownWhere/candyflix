@@ -58,7 +58,7 @@ var fetcher = {
 				if(json){
 					try{
 						json.seasons = [];	
-						json.episodeList = [][];
+						json.episodeList = new Array();
 						for(var i=0; i<json.episodes.length; i++ ) {
 							if(json.seasons.indexOf(json.episodes[i].season)==-1){
 								json.seasons.push(json.episodes[i].season);
