@@ -6,7 +6,7 @@ fetcher.scrappers.t4p_tv = function(genre, keywords, page, callback){
 			genre = !1;
 
 
-		var url = 'http://api.torrentsapi.com/shows?formats=mp4&cb='+Math.random()+'&sort=seeds&page=' + ui.home.catalog.page;
+		var url = 'http://api.stream.nontonfilm21.com/shows/'+ui.home.catalog.page+'?cb='+Math.random()+'&sort=seeds';
 
         if (keywords) {
             url += '&keywords=' + keywords;
@@ -17,7 +17,7 @@ fetcher.scrappers.t4p_tv = function(genre, keywords, page, callback){
         }
 
         if (page && page.toString().match(/\d+/)) {
-           url += '&set=' + page;
+           url += '&page=' + page;
         }
 
 		$.ajax({
@@ -29,33 +29,33 @@ fetcher.scrappers.t4p_tv = function(genre, keywords, page, callback){
 				var movies = [],
 					memory = {};
 
-				if (data.error || typeof data.MovieList === 'undefined') {
+				if (data.error || typeof data === 'undefined') {
 					callback(false)
 					return;
 				}
 
-				data.MovieList.forEach(function (movie){
+				data.forEach(function (movie){
 					// No imdb, no movie.
 
-					if( typeof movie.imdb != 'string' || movie.imdb.replace('tt', '') == '' ){ return;}
+					if( typeof movie.imdb_id != 'string' || movie.imdb_id.replace('tt', '') == '' ){ return;}
 
 			try{
 
 					// Temporary object
 					var movieModel = {
-						imdb:       movie.imdb,
+						imdb:       movie.imdb_id,
 						title:      movie.title,
 						year:       movie.year ? movie.year : '&nbsp;',
-						runtime:    movie.runtime,
-						synopsis:   "",
+						runtime:    "",
+						synopsis:   movie.overview,
 						voteAverage:parseFloat(movie.rating),
 
-						image:      movie.poster_med,
-						bigImage:   movie.poster_big,
-						backdrop:   "",
+						image:      movie.images.lowres,
+						bigImage:   movie.images.lowres,
+						backdrop:   movie.images.fanart,
 						videos:     {},
-						seeders:    movie.torrent_seeds,
-						leechers:   movie.torrent_peers,
+						seeders:    0,
+						leechers:   0,
 						trailer:	movie.trailer ? 'http://www.youtube.com/embed/' + movie.trailer + '?autoplay=1': false,
 						stars:		utils.movie.rateToStars(parseFloat(movie.rating)),
 						

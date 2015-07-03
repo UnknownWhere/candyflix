@@ -54,7 +54,7 @@ var fetcher = {
 
 		tv_show:function(imdb, callback){
 
-			$.get('http://api.torrentsapi.com/show?cb='+Math.random()+'&formats=mp4&imdb=' + imdb, function(json){
+			$.get('http://api.stream.nontonfilm21.com/show/'+imdb+'?cb='+Math.random()+'&formats=mp4&imdb=' + imdb, function(json){
 				if(json){
 
 					try{
