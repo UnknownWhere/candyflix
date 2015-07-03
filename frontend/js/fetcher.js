@@ -62,16 +62,16 @@ var fetcher = {
 						for(var i=0; i<json.episodes.length; i++ ) {
 							if(json.seasons.indexOf(json.episodes[i].season)==-1){
 								json.seasons.push(json.episodes[i].season);
-								// json.episodeList[json.episodes[i].season];
+								json.episodeList[json.episodes[i].season];
 							}
 						}
 
 						json.seasons = json.seasons.sort(function (a, b) { 
 							return a - b;
 						});
-						// json.episodeList = json.episodeList.sort(function (a, b) { 
-						// 	return a - b;
-						// });
+						json.episodeList = json.episodeList.sort(function (a, b) { 
+							return a - b;
+						});
 						for(var j=0;j<json.seasons.length;j++){
 							//json.episodesList[json.seasons[j]] = [];
 							for(var i=0;i<json.episodes.length; i++){
