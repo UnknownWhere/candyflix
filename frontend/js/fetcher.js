@@ -72,7 +72,8 @@ var fetcher = {
 							for(var i=0;i<json.episodes.length; i++){
 								var index = 0;
 								if(json.episodes[i].season==json.seasons[j]){
-									json.episodesList[json.seasons[j]][index] = json.episodes[i];
+									json.episodesList[json.seasons[j]].push(json.episodes[i]);
+									console.log(json.episodes[i]);
 									index++;
 								}
 							}
