@@ -96,7 +96,6 @@ fetcher.scrappers.t4p_movies = function(genre, keywords, page, callback){
 
 					// Set it's correspondent quality torrent URL.
 					stored.torrents[movie.quality] = movie.torrents;
-					console.log(stored);
 					// Push it if not currently on array.
 					if (movies.indexOf(stored) === -1) {
 						movies.push(stored);

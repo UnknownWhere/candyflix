@@ -36,7 +36,7 @@ fetcher.scrappers.t4p_tv = function(genre, keywords, page, callback){
 
 				data.forEach(function (movie){
 					// No imdb, no movie.
-
+					console.log(movie);
 					if( typeof movie.imdb_id != 'string' || movie.imdb_id.replace('tt', '') == '' ){ return;}
 
 			try{
