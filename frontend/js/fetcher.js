@@ -62,7 +62,7 @@ var fetcher = {
 						for(var i=0; i<json.episodes.length; i++ ) {
 							if(json.seasons.indexOf(json.episodes[i].season)==-1){
 								json.seasons.push(json.episodes[i].season);
-								json.episodeList[json.episodes[i].season];
+								//json.episodeList[json.episodes[i].season];
 							}
 						}
 
@@ -72,14 +72,14 @@ var fetcher = {
 						
 						for(var j=0;j<json.seasons.length;j++){
 							//json.episodesList[json.seasons[j]] = [];
+							var episodes = [];
 							for(var i=0;i<json.episodes.length; i++){
 								
 								if(json.episodes[i].season==json.seasons[j]){
-									//json.episodesList[json.seasons[j]].push(json.episodes[i]);
-									//console.log("Season : " + json.seasons[j] + " / " + JSON.stringify(json.episodes[i]));
-									//index++;
+									episodes.push(json.seasons[j]);
 								}
 							}
+							json.episodeList[json.seasons[j]] = episodes;
 							// json.episodesList[j] =  json.episodesList[j].sort(function (a, b) { 
 							// return a - b;
 							// });
