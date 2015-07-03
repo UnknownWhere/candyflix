@@ -457,7 +457,7 @@ var ui = {
 
         set_season:function(season_id){
           console.log(ui.home.catalog.tv_show.items[1]);
-          console.log(ui.home.catalog.tv_show.items[0].episodeList[0]);
+          console.log(ui.home.catalog.tv_show.items[0].episodeList[1]);
           var
           imdb      = ui.home.catalog.tv_show.items[1],
           episodes     = ui.home.catalog.tv_show.items[0].episodeList[0],
