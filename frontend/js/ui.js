@@ -456,11 +456,10 @@ var ui = {
         },
 
         set_season:function(season_id){
-          console.log(ui.home.catalog.tv_show.items[1]);
-          console.log(ui.home.catalog.tv_show.items[0].episodeList[1]);
+
           var
           imdb      = ui.home.catalog.tv_show.items[1],
-          episodes     = ui.home.catalog.tv_show.items[0].episodeList[0],
+          episodes     = ui.home.catalog.tv_show.items[0].episodeList[season_id],
           episodes_cont   = $('#slider_' + imdb + ' .episodes_box'),
           poster_url    = $('#slider_'+imdb+' .movie_poster img').attr('src');
 
@@ -479,7 +478,7 @@ var ui = {
 
           var
           imdb  = ui.home.catalog.tv_show.items[1],
-          episode  = ui.home.catalog.tv_show.items[0][season_id][episode_id];
+          episode  = ui.home.catalog.tv_show.items[0].episodeList[season_id][episode_id];
 
           $('#slider_' + imdb + ' .episode.activated').removeClass('activated');
           $('#slider_' + imdb + ' .episode:nth-child(' + (episode_id+1) + ')').addClass('activated');
@@ -488,16 +487,16 @@ var ui = {
           $('#slider_' + imdb + ' .watch_btn').css('visibility','visible');
           $('#slider_' + imdb + ' .torrents').html('')
 
-          if(episode.items && episode.items.length){
+          if(episode.items && episode.torrents.length){
             $('#slider_' + imdb + ' .watch_btn').css('visibility','visible');
 
             var html = $('#torrent_option_html').html();
-            for(var i=0;i<episode.items.length;i++){
+            for(var i=0;i<episode.torrents.length;i++){
 
               var option = utils.tokenizer({
-                quality:  episode.items[i].quality,
-                peers:    episode.items[i].torrent_seeds + ' Seeds, &nbsp;' + episode.items[i].torrent_peers + ' Peers',
-                health:    utils.calculateTorrentHealth(episode.items[i].torrent_seeds, episode.items[i].torrent_peers)
+                quality:  episode.torrents[i].quality,
+                peers:    episode.torrents[i].seeds + ' Seeds, &nbsp;' + episode.torrents[i].peers + ' Peers',
+                health:    utils.calculateTorrentHealth(episode.torrents[i].seeds, episode.torrents[i].peers)
 
               }, html);
               $(option).appendTo('#slider_' + imdb + ' .torrents').click(function(){
@@ -536,7 +535,7 @@ var ui = {
 
             var idx = el.index();
 
-            if(!episode.items[idx] || !episode.items[idx].torrent_url){
+            if(!episode.torrents[idx] || !episode.torrents[idx].url){
 
               utils.msgbox('Error - please choose a diffrent torrent');
               el.remove();
@@ -548,8 +547,8 @@ var ui = {
 
 
             var
-            torrent   = episode.items[idx].torrent_url,
-            video_file   = episode.items[idx].file;
+            torrent   = episode.torrents[idx].url,
+            video_file   = episode.torrents[idx].file;
 
             api.send({torrent:{stream:[torrent, video_file]}});
 
