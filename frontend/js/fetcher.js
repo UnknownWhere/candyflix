@@ -70,8 +70,10 @@ var fetcher = {
 						});
 						for(var j=0;j<json.seasons.length;j++){
 							for(var i=0;i<json.episodes.length; i++){
+								var index = 0;
 								if(json.episodes[i].season==json.seasons[j]){
-									json.episodesList[json.seasons[j][] = json.episodes[i];
+									json.episodesList[json.seasons[j]][index] = json.episodes[i];
+									index++;
 								}
 							}
 						}
