@@ -498,7 +498,7 @@ var ui = {
                 health:    utils.calculateTorrentHealth(episode.torrents[item].seeds, episode.torrents[item].peers)
 
               }, html);
-              $(option).appendTo('#slider_' + imdb + ' .torrents data-idx="' + option.quality + '"').click(function(){
+              $(option).appendTo('#slider_' + imdb + ' .torrents').click(function(){
 
                 $('#slider_'+imdb+' .torrent_option.activated').removeClass('activated');
                 $(this).addClass('activated');
