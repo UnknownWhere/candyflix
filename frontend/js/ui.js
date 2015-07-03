@@ -489,9 +489,9 @@ var ui = {
           
           if(episode.torrents){
             $('#slider_' + imdb + ' .watch_btn').css('visibility','visible');
-          console.log('bagus');
             var html = $('#torrent_option_html').html();
             for(var item in episode.torrents){
+              if(item==="0")continue;
               var option = utils.tokenizer({
                 quality:  item,
                 peers:    episode.torrents[item].seeds + ' Seeds, &nbsp;' + episode.torrents[item].peers + ' Peers',
@@ -526,7 +526,7 @@ var ui = {
 
           $('#slider_' + imdb + ' .watch_btn').unbind('click').click(function(){
             var el = $('#slider_' + imdb + ' .torrent_option.activated');
-
+            console.log(el);
             if(!el.length){
               utils.msgbox('Error - please choose a torrent');
               return;
