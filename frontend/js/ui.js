@@ -457,10 +457,10 @@ var ui = {
 
         set_season:function(season_id){
           console.log(ui.home.catalog.tv_show.items[1]);
-          console.log(ui.home.catalog.tv_show.items[0].episodesList[0]);
+          console.log(ui.home.catalog.tv_show.items[0].episodeList[0]);
           var
           imdb      = ui.home.catalog.tv_show.items[1],
-          episodes     = ui.home.catalog.tv_show.items[0].episodesList[0],
+          episodes     = ui.home.catalog.tv_show.items[0].episodeList[0],
           episodes_cont   = $('#slider_' + imdb + ' .episodes_box'),
           poster_url    = $('#slider_'+imdb+' .movie_poster img').attr('src');
 
