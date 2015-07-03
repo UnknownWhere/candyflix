@@ -437,7 +437,7 @@ var ui = {
 
                 if(!seasons_counter){
 
-                  ui.home.catalog.tv_show.set_season(String.valueOf(items.seasons[i]);
+                  ui.home.catalog.tv_show.set_season(String.valueOf(items.seasons[i]));
                 }
 
                 seasons_counter++;
