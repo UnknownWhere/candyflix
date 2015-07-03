@@ -76,10 +76,10 @@ var fetcher = {
 							for(var i=0;i<json.episodes.length; i++){
 								
 								if(json.episodes[i].season==json.seasons[j]){
-									episodes.push(json.seasons[j]);
+									episodes.push(json.episodes[i]);
 								}
 							}
-							json.episodeList[json.seasons[j]] = episodes;
+							json.episodeList[parseInt(json.seasons[j])] = episodes;
 							// json.episodesList[j] =  json.episodesList[j].sort(function (a, b) { 
 							// return a - b;
 							// });
