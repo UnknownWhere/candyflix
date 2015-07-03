@@ -56,9 +56,9 @@ var fetcher = {
 
 			$.get('http://api.stream.nontonfilm21.com/show/'+imdb+'?cb='+Math.random()+'&formats=mp4&imdb=' + imdb, function(json){
 				if(json){
-					console.log(json);
 					try{
 						json.seasons = [];	
+						json.episodeList = [];
 						for(var i=0; i<json.episodes.length; i++ ) {
 							if(json.seasons.indexOf(json.episodes[i].season)==-1){
 								json.seasons.push(json.episodes[i].season);
@@ -67,7 +67,6 @@ var fetcher = {
 						json.seasons = json.seasons.sort(function (a, b) { 
 							return a - b;
 						});
-						console.log(json);
 						callback(0, json);
 
 					}catch(e){
