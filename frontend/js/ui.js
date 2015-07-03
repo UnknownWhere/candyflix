@@ -498,7 +498,7 @@ var ui = {
                 health:    utils.calculateTorrentHealth(episode.torrents[item].seeds, episode.torrents[item].peers)
 
               }, html);
-              $(option).appendTo('#slider_' + imdb + ' .torrents').click(function(){
+              $(option).appendTo('#slider_' + imdb + ' .torrents data-idx="' + option.quality + '"').click(function(){
 
                 $('#slider_'+imdb+' .torrent_option.activated').removeClass('activated');
                 $(this).addClass('activated');
@@ -526,14 +526,13 @@ var ui = {
 
           $('#slider_' + imdb + ' .watch_btn').unbind('click').click(function(){
             var el = $('#slider_' + imdb + ' .torrent_option.activated');
-            console.log(el);
             if(!el.length){
               utils.msgbox('Error - please choose a torrent');
               return;
             }
 
-            var idx = el.index();
-
+            var idx = parseInt($(el).data('idx'));
+console.log(idx);
             if(!episode.torrents[idx] || !episode.torrents[idx].url){
 
               utils.msgbox('Error - please choose a diffrent torrent');
