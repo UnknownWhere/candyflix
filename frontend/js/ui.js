@@ -483,11 +483,11 @@ var ui = {
           $('#slider_' + imdb + ' .episode.activated').removeClass('activated');
           $('#slider_' + imdb + ' .episode:nth-child(' + (episode_id+1) + ')').addClass('activated');
           $('#slider_' + imdb + ' .episode_title').html(episode.title);
-          $('#slider_' + imdb + ' .episode_description').html(episode.synopsis);
+          $('#slider_' + imdb + ' .episode_description').html(episode.overview);
           $('#slider_' + imdb + ' .watch_btn').css('visibility','visible');
           $('#slider_' + imdb + ' .torrents').html('')
           
-          if(episode.torrents && episode.torrents.length){
+          if(episode.torrents){
             $('#slider_' + imdb + ' .watch_btn').css('visibility','visible');
           console.log('bagus');
             var html = $('#torrent_option_html').html();
