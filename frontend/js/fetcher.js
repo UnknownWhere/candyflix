@@ -59,13 +59,14 @@ var fetcher = {
 					console.log(json);
 					try{
 
-						for(var s in json) {
-							for(var e in json[s]) {
-								for(var i=json[s][e].items.length-1; i>=0; i-- ) {
-									json[s][e].items[i].quality += ' (' + json[s][e].items[i].file.split('.').pop() + ')';
-								}
-							}
-						}
+						// for(var s in json) {
+						// 	for(var e in json[s]) {
+						// 		console.log(json[s])
+						// 		for(var i=json[s][e].episodes.length-1; i>=0; i-- ) {
+						// 			json[s][e].items[i].quality += ' (' + json[s][e].items[i].file.split('.').pop() + ')';
+						// 		}
+						// 	}
+						// }
 
 						callback(0, json);
 
