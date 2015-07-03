@@ -531,7 +531,7 @@ var ui = {
               return;
             }
 
-            var idx = parseInt($(el).data('idx'));
+            var idx = $(el).data('idx');
 console.log(idx);
             if(!episode.torrents[idx] || !episode.torrents[idx].url){
 
