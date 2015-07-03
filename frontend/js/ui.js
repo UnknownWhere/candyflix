@@ -427,7 +427,7 @@ var ui = {
             else{
 
               ui.home.catalog.tv_show.items = [items, imdb];
-
+              console.log(items);
               var
               seasons_counter  = 0,
               seasons_cont   = $('#slider_' + imdb + ' .choose_season select');
