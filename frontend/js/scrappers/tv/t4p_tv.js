@@ -65,11 +65,11 @@ fetcher.scrappers.t4p_tv = function(genre, keywords, page, callback){
 
 
 
-					var stored = memory[movie.imdb];
+					var stored = memory[movie.imdb_id];
 
 					// Create it on memory map if it doesn't exist.
 					if (typeof stored === 'undefined') {
-						stored = memory[movie.imdb] = movieModel;
+						stored = memory[movie.imdb_id] = movieModel;
 					}
 
 					// Push it if not currently on array.
