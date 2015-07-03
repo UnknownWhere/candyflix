@@ -432,7 +432,7 @@ var ui = {
               seasons_counter  = 0,
               seasons_cont   = $('#slider_' + imdb + ' .choose_season select');
 
-              for(var i in items){
+              for(var i in items.seasons){
                 seasons_cont.append('<option value="'+i+'">' + locale.translate('season') + ' ' + i + '</div>');
 
                 if(!seasons_counter){
