@@ -466,7 +466,7 @@ var ui = {
           episodes_cont.html('');
 
           for(var i=0;i<episodes.length;i++){
-            episodes_cont.append('<div onclick="ui.home.catalog.tv_show.show_episode(\''+season_id+'\','+i+')" class="episode"><div class="episode_num">' + (episodes[i].episode) + '</div></div>');
+            episodes_cont.append('<div onclick="ui.home.catalog.tv_show.show_episode(\''+season_id+'\','+i+')" class="episode"><img src="'+episodes[i].image+'" style="width:80px;height:80px;"/><div class="episode_num">' + (episodes[i].episode) + '</div></div>');
           }
 
           ui.home.catalog.tv_show.show_episode(season_id,0);
