@@ -58,11 +58,11 @@ var fetcher = {
 				if(json){
 					try{
 						json.seasons = [];	
-						json.episodeList = [];
+						json.episodeList = {};
 						for(var i=0; i<json.episodes.length; i++ ) {
 							if(json.seasons.indexOf(json.episodes[i].season)==-1){
 								json.seasons.push(json.episodes[i].season);
-								json.episodeList.push(json.episodes[i].season);
+								json.episodeList[json.episodes[i].season];
 							}
 						}
 
@@ -73,13 +73,13 @@ var fetcher = {
 							return a - b;
 						});
 						for(var j=0;j<json.seasons.length;j++){
-							json.episodesList[j] = [];
+							json.episodesList[json.seasons[j]] = {};
 							for(var i=0;i<json.episodes.length; i++){
-								var index = 0;
+								
 								if(json.episodes[i].season==json.seasons[j]){
-									json.episodesList[j][json.episodes[i].episode](json.episodes[i]);
-									console.log("Season : " + json.seasons[j] + " / " + JSON.stringify(json.episodes[i]));
-									index++;
+									json.episodesList[j][json.episodes[i].episode] = json.episodes[i];
+									//console.log("Season : " + json.seasons[j] + " / " + JSON.stringify(json.episodes[i]));
+									//index++;
 								}
 							}
 							// json.episodesList[j] =  json.episodesList[j].sort(function (a, b) { 
