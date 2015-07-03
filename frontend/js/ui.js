@@ -436,7 +436,7 @@ var ui = {
                 seasons_cont.append('<option value="'+i+'">' + locale.translate('season') + ' ' + i + '</div>');
 
                 if(!seasons_counter){
-                  var season_id = String.valueOf(items.seasons[i]);
+                  var season_id = items.seasons[i].toString();
                   ui.home.catalog.tv_show.set_season(season_id);
                 }
 
