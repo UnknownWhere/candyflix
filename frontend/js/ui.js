@@ -466,7 +466,7 @@ var ui = {
           episodes_cont.html('');
 
           for(var i=0;i<episodes.length;i++){
-            episodes_cont.append('<div onclick="ui.home.catalog.tv_show.show_episode(\''+season_id+'\','+i+')" class="episode"><div class="episode_num">' + (episodes[i].episode) + '</div></div>');
+            episodes_cont.append('<div onclick="ui.home.catalog.tv_show.show_episode(\''+season_id+'\','+episodes[i].episode+')" class="episode"><div class="episode_num">' + (episodes[i].episode) + '</div></div>');
           }
 
           ui.home.catalog.tv_show.show_episode(season_id,0);
@@ -486,7 +486,7 @@ var ui = {
           $('#slider_' + imdb + ' .episode_description').html(episode.synopsis);
           $('#slider_' + imdb + ' .watch_btn').css('visibility','visible');
           $('#slider_' + imdb + ' .torrents').html('')
-
+          console.log(episode);
           if(episode.torrents && episode.torrents.length){
             $('#slider_' + imdb + ' .watch_btn').css('visibility','visible');
 
