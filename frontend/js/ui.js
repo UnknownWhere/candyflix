@@ -459,7 +459,7 @@ var ui = {
           console.log('Set Season ' + JSON.stringify(ui.home.catalog.tv_show));
           var
           imdb      = ui.home.catalog.tv_show.items[1],
-          episodes     = ui.home.catalog.tv_show.episodesList[season_id],
+          episodes     = ui.home.catalog.tv_show.items[0].episodesList[season_id],
           episodes_cont   = $('#slider_' + imdb + ' .episodes_box'),
           poster_url    = $('#slider_'+imdb+' .movie_poster img').attr('src');
 
