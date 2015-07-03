@@ -64,6 +64,9 @@ var fetcher = {
 								json.seasons.push(json.episodes[i].season);
 							}
 						}
+						json.seasons = json.seasons.sort(function (a, b) { 
+							return a - b;
+						});
 						console.log(json);
 						callback(0, json);
 
