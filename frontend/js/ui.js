@@ -491,12 +491,12 @@ var ui = {
             $('#slider_' + imdb + ' .watch_btn').css('visibility','visible');
           console.log('bagus');
             var html = $('#torrent_option_html').html();
-            for(var i=0;i<episode.torrents.length;i++){
-              console.log(episode.torrents[i]);
+            for(var item in episode.torrents){
+              console.log(episode.torrents[item]);
               var option = utils.tokenizer({
-                quality:  episode.torrents[i].quality,
-                peers:    episode.torrents[i].seeds + ' Seeds, &nbsp;' + episode.torrents[i].peers + ' Peers',
-                health:    utils.calculateTorrentHealth(episode.torrents[i].seeds, episode.torrents[i].peers)
+                quality:  episode.torrents[item],
+                peers:    episode.torrents[item].seeds + ' Seeds, &nbsp;' + episode.torrents[item].peers + ' Peers',
+                health:    utils.calculateTorrentHealth(episode.torrents[item].seeds, episode.torrents[item].peers)
 
               }, html);
               $(option).appendTo('#slider_' + imdb + ' .torrents').click(function(){
